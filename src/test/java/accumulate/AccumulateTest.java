@@ -6,9 +6,36 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class AccumulateTest {
 
+	@Test
+	public void test_accumulate_InvalidInput_NullList_ThrowsException( ) {
+		try {
+			List<Integer> list = null;
+			Accumulate.accumulate( list, x -> x * x );
+			fail ("Supposed to catch NullPointerException");
+		} catch ( NullPointerException npe ) {
+			
+		} catch ( Exception e ) {
+			fail ("Expected to catch NullPointerException");
+		}
+	}
+	
+	@Test
+	public void test_accumulate_InvalidInput_NullLambda_ThrowsException( ) {
+		try {
+			List<Integer> list = new LinkedList<Integer>();
+			Accumulate.accumulate( list, null );
+			fail ("Supposed to catch NullPointerException");
+		} catch ( NullPointerException npe ) {
+			
+		} catch ( Exception e ) {
+			fail ("Expected to catch NullPointerException");
+		}
+	}
+	
     @Test
     public void emptyAccumulateProducesEmptyAccumulation() {
         List<Integer> input = new LinkedList<>();
